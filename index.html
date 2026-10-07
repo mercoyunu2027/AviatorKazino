@@ -24,262 +24,59 @@ body {
     box-shadow: 0 0 60px rgba(233, 69, 96, 0.3), 0 0 120px rgba(0, 255, 136, 0.1);
     border: 2px solid #e94560;
 }
-.logo {
-    text-align: center;
-    margin-bottom: 25px;
-}
-.logo h1 {
-    font-size: 42px;
-    color: #e94560;
-    text-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
-    letter-spacing: 2px;
-}
-.logo .plane {
-    font-size: 50px;
-    display: block;
-    margin-bottom: 5px;
-    animation: fly 2s infinite ease-in-out;
-}
-@keyframes fly {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-}
-.logo p {
-    color: #aaa;
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-top: 5px;
-}
-.tabs {
-    display: flex;
-    background: #0a0a1a;
-    border-radius: 10px;
-    padding: 5px;
-    margin-bottom: 25px;
-}
-.tab {
-    flex: 1;
-    padding: 12px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
-    color: #aaa;
-    transition: all 0.3s;
-}
-.tab.active {
-    background: #e94560;
-    color: #fff;
-}
+.logo { text-align: center; margin-bottom: 25px; }
+.logo h1 { font-size: 42px; color: #e94560; text-shadow: 0 0 20px rgba(233, 69, 96, 0.6); letter-spacing: 2px; }
+.logo .plane { font-size: 50px; display: block; margin-bottom: 5px; animation: fly 2s infinite ease-in-out; }
+@keyframes fly { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+.logo p { color: #aaa; font-size: 13px; letter-spacing: 1px; margin-top: 5px; }
+.tabs { display: flex; background: #0a0a1a; border-radius: 10px; padding: 5px; margin-bottom: 25px; }
+.tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border-radius: 8px; font-weight: bold; color: #aaa; transition: all 0.3s; user-select: none; }
+.tab.active { background: #e94560; color: #fff; }
 .form-group { margin-bottom: 18px; }
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #aaa;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-.form-group input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #2a3a5e;
-    border-radius: 10px;
-    background: #0a0a1a;
-    color: #fff;
-    font-size: 15px;
-    transition: all 0.3s;
-}
-.form-group input:focus {
-    outline: none;
-    border-color: #e94560;
-    box-shadow: 0 0 15px rgba(233, 69, 96, 0.3);
-}
-.btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    letter-spacing: 1px;
-}
-.btn-primary {
-    background: linear-gradient(135deg, #e94560, #c73650);
-    color: #fff;
-    box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
-}
+.form-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+.form-group input { width: 100%; padding: 14px 16px; border: 2px solid #2a3a5e; border-radius: 10px; background: #0a0a1a; color: #fff; font-size: 15px; transition: all 0.3s; }
+.form-group input:focus { outline: none; border-color: #e94560; box-shadow: 0 0 15px rgba(233, 69, 96, 0.3); }
+.btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; }
+.btn-primary { background: linear-gradient(135deg, #e94560, #c73650); color: #fff; box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233, 69, 96, 0.6); }
-.btn-success {
-    background: linear-gradient(135deg, #00ff88, #00cc66);
-    color: #0a0a1a;
-    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
-}
+.btn-success { background: linear-gradient(135deg, #00ff88, #00cc66); color: #0a0a1a; box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4); }
 .btn-success:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 .hidden { display: none !important; }
-.info-box {
-    background: #0a0a1a;
-    padding: 18px;
-    border-radius: 12px;
-    border-left: 4px solid #00ff88;
-    margin-bottom: 20px;
-}
-.info-box .row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
+.info-box { background: #0a0a1a; padding: 18px; border-radius: 12px; border-left: 4px solid #00ff88; margin-bottom: 20px; }
+.info-box .row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
 .info-box .row:last-child { margin-bottom: 0; }
 .info-box .label { color: #aaa; }
 .info-box .value { color: #00ff88; font-weight: bold; }
-.warning {
-    background: rgba(255, 170, 0, 0.1);
-    border-left: 4px solid #ffaa00;
-    padding: 12px 15px;
-    border-radius: 8px;
-    color: #ffaa00;
-    font-size: 13px;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-.success-box {
-    background: rgba(0, 255, 136, 0.1);
-    border-left: 4px solid #00ff88;
-    padding: 18px;
-    border-radius: 8px;
-    color: #00ff88;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.success-box .check {
-    font-size: 50px;
-    display: block;
-    margin-bottom: 10px;
-}
+.warning { background: rgba(255, 170, 0, 0.1); border-left: 4px solid #ffaa00; padding: 12px 15px; border-radius: 8px; color: #ffaa00; font-size: 13px; margin-bottom: 20px; line-height: 1.5; }
+.success-box { background: rgba(0, 255, 136, 0.1); border-left: 4px solid #00ff88; padding: 18px; border-radius: 8px; color: #00ff88; margin-bottom: 20px; text-align: center; }
+.success-box .check { font-size: 50px; display: block; margin-bottom: 10px; }
 .success-box h3 { font-size: 20px; margin-bottom: 8px; }
 .success-box p { color: #aaa; font-size: 14px; line-height: 1.6; }
-.success-box .timer {
-    color: #ffaa00;
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: 10px;
-    display: block;
-}
-.upload-area {
-    border: 2px dashed #2a3a5e;
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-bottom: 15px;
-    background: #0a0a1a;
-}
+.success-box .timer { color: #ffaa00; font-weight: bold; font-size: 16px; margin-top: 10px; display: block; }
+.upload-area { border: 2px dashed #2a3a5e; border-radius: 12px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s; margin-bottom: 15px; background: #0a0a1a; }
 .upload-area:hover { border-color: #e94560; background: rgba(233, 69, 96, 0.05); }
 .upload-area .icon { font-size: 40px; display: block; margin-bottom: 10px; }
 .upload-area p { color: #aaa; font-size: 13px; }
 .upload-area .filename { color: #00ff88; font-weight: bold; margin-top: 8px; }
-.alert {
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 15px;
-    text-align: center;
-}
+.alert { padding: 12px 15px; border-radius: 8px; font-size: 13px; margin-bottom: 15px; text-align: center; }
 .alert-error { background: rgba(255, 68, 68, 0.15); color: #ff4444; border: 1px solid #ff4444; }
 .alert-info { background: rgba(0, 170, 255, 0.15); color: #00aaff; border: 1px solid #00aaff; }
-.steps {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-    position: relative;
-}
-.steps::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: #2a3a5e;
-    z-index: 0;
-}
-.step {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #2a3a5e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s;
-}
+.alert-success { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
+.steps { display: flex; justify-content: space-between; margin-bottom: 25px; position: relative; }
+.steps::before { content: ''; position: absolute; top: 15px; left: 10%; right: 10%; height: 2px; background: #2a3a5e; z-index: 0; }
+.step { width: 30px; height: 30px; border-radius: 50%; background: #2a3a5e; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; position: relative; z-index: 1; transition: all 0.3s; }
 .step.active { background: #e94560; box-shadow: 0 0 15px rgba(233, 69, 96, 0.6); }
 .step.done { background: #00ff88; color: #0a0a1a; }
-.balance-display {
-    text-align: center;
-    background: #0a0a1a;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-.balance-display .amount {
-    font-size: 38px;
-    color: #00ff88;
-    font-weight: bold;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-}
+.balance-display { text-align: center; background: #0a0a1a; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+.balance-display .amount { font-size: 38px; color: #00ff88; font-weight: bold; text-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
 .balance-display .label { color: #aaa; font-size: 13px; margin-bottom: 5px; letter-spacing: 1px; }
-.game-preview {
-    background: #0a0a1a;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 20px;
-    border: 1px solid #2a3a5e;
-}
-.game-preview .multiplier {
-    font-size: 55px;
-    color: #00ff88;
-    font-weight: bold;
-    text-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
-}
+.game-preview { background: #0a0a1a; border-radius: 12px; padding: 30px; text-align: center; margin-bottom: 20px; border: 1px solid #2a3a5e; }
+.game-preview .multiplier { font-size: 55px; color: #00ff88; font-weight: bold; text-shadow: 0 0 25px rgba(0, 255, 136, 0.5); }
 .game-preview .plane-fly { font-size: 40px; margin-bottom: 10px; }
-.footer-text {
-    text-align: center;
-    color: #555;
-    font-size: 11px;
-    margin-top: 20px;
-    line-height: 1.6;
-}
-.live-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #ff4444;
-    border-radius: 50%;
-    margin-right: 5px;
-    animation: blink 1s infinite;
-}
+.footer-text { text-align: center; color: #555; font-size: 11px; margin-top: 20px; line-height: 1.6; }
+.live-dot { display: inline-block; width: 8px; height: 8px; background: #ff4444; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-.verify-badge {
-    background: linear-gradient(135deg, #ffaa00, #ff8800);
-    color: #0a0a1a;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 15px;
-}
 </style>
 </head>
 <body>
@@ -290,21 +87,21 @@ body {
         <p><span class="live-dot"></span>CANLI OYUN • 24/7 ONLINE</p>
     </div>
 
-    <!-- GİRİŞ FORMU -->
+    <!-- GİRİŞ / QEYDİYYAT -->
     <div id="loginScreen">
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('login')">GİRİŞ</div>
-            <div class="tab" onclick="switchTab('register')">QEYDİYYAT</div>
+            <div class="tab active" id="tabLogin" onclick="switchTab('login')">GİRİŞ</div>
+            <div class="tab" id="tabRegister" onclick="switchTab('register')">QEYDİYYAT</div>
         </div>
 
         <div id="loginForm">
             <div class="form-group">
                 <label>İSTİFADƏÇİ ADI</label>
-                <input type="text" id="loginUsername" placeholder="İstifadəçi adınız">
+                <input type="text" id="loginUsername" placeholder="İstifadəçi adınız" autocomplete="off">
             </div>
             <div class="form-group">
                 <label>ŞİFRƏ</label>
-                <input type="password" id="loginPassword" placeholder="••••••••">
+                <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="off">
             </div>
             <div id="loginAlert"></div>
             <button class="btn btn-primary" onclick="doLogin()">DAXİL OL</button>
@@ -313,15 +110,15 @@ body {
         <div id="registerForm" class="hidden">
             <div class="form-group">
                 <label>İSTİFADƏÇİ ADI</label>
-                <input type="text" id="regUsername" placeholder="İstifadəçi adı (min 3 simvol)">
+                <input type="text" id="regUsername" placeholder="İstifadəçi adı (min 3 simvol)" autocomplete="off">
             </div>
             <div class="form-group">
                 <label>EMAIL</label>
-                <input type="email" id="regEmail" placeholder="email@example.com">
+                <input type="email" id="regEmail" placeholder="email@example.com" autocomplete="off">
             </div>
             <div class="form-group">
                 <label>ŞİFRƏ</label>
-                <input type="password" id="regPassword" placeholder="Min 6 simvol">
+                <input type="password" id="regPassword" placeholder="Min 6 simvol" autocomplete="off">
             </div>
             <div class="warning">🎁 Qeydiyyatdan keçən hər istifadəçiyə <b>5 ₼</b> bonus verilir!</div>
             <div id="regAlert"></div>
@@ -337,28 +134,13 @@ body {
             <div class="step" id="step3">3</div>
         </div>
 
-        <!-- ADDIM 1: KART MƏLUMATLARI -->
         <div id="depositStep1">
-            <div class="warning">
-                ⚠️ Oyunu oynamaq üçün minimum <b>5 ₼</b> depozit etməlisiniz. Depozit olmadan oyun başlamaz.
-            </div>
+            <div class="warning">⚠️ Oyunu oynamaq üçün minimum <b>5 ₼</b> depozit etməlisiniz. Depozit olmadan oyun başlamaz.</div>
             <div class="info-box">
-                <div class="row">
-                    <span class="label">Kart Nömrəsi:</span>
-                    <span class="value" style="font-size: 15px; letter-spacing: 1px;">4169 7388 5282 3602</span>
-                </div>
-                <div class="row">
-                    <span class="label">Kart Sahibi:</span>
-                    <span class="value">UMUD</span>
-                </div>
-                <div class="row">
-                    <span class="label">Bank:</span>
-                    <span class="value">Kapital Bank</span>
-                </div>
-                <div class="row">
-                    <span class="label">Minimum:</span>
-                    <span class="value">5 ₼</span>
-                </div>
+                <div class="row"><span class="label">Kart Nömrəsi:</span><span class="value" style="font-size: 15px; letter-spacing: 1px;">4169 7388 5282 3602</span></div>
+                <div class="row"><span class="label">Kart Sahibi:</span><span class="value">UMUD</span></div>
+                <div class="row"><span class="label">Bank:</span><span class="value">Kapital Bank</span></div>
+                <div class="row"><span class="label">Minimum:</span><span class="value">5 ₼</span></div>
             </div>
             <div class="form-group">
                 <label>DEPOZİT MƏBLƏĞİ (₼)</label>
@@ -368,11 +150,8 @@ body {
             <button class="btn btn-primary" onclick="goToUpload()">DAVAM ET →</button>
         </div>
 
-        <!-- ADDIM 2: QƏBZ YÜKLƏMƏ -->
         <div id="depositStep2" class="hidden">
-            <div class="alert alert-info">
-                📸 Pul köçürməsini etdikdən sonra qəbz (çek) şəklini yükləyin
-            </div>
+            <div class="alert alert-info">📸 Pul köçürməsini etdikdən sonra qəbz (çek) şəklini yükləyin</div>
             <div class="upload-area" onclick="document.getElementById('receiptInput').click()">
                 <span class="icon">📤</span>
                 <p>Qəbz şəklini seçmək üçün klikləyin</p>
@@ -384,7 +163,6 @@ body {
             <button class="btn btn-success" id="submitDepositBtn" onclick="submitDeposit()" disabled>DEPOZİTİ TƏSDİQLƏ</button>
         </div>
 
-        <!-- ADDIM 3: TƏSDİQ GÖZLƏMƏ -->
         <div id="depositStep3" class="hidden">
             <div class="success-box">
                 <span class="check">✅</span>
@@ -393,26 +171,12 @@ body {
                 <span class="timer">⏱ Gözləmə müddəti: 30 dəqiqə</span>
             </div>
             <div class="info-box">
-                <div class="row">
-                    <span class="label">Sorğu ID:</span>
-                    <span class="value" id="requestId">#AV-0000</span>
-                </div>
-                <div class="row">
-                    <span class="label">Məbləğ:</span>
-                    <span class="value" id="requestAmount">0 ₼</span>
-                </div>
-                <div class="row">
-                    <span class="label">Status:</span>
-                    <span class="value" style="color: #ffaa00;">⏳ YOXLANILIR</span>
-                </div>
-                <div class="row">
-                    <span class="label">Tarix:</span>
-                    <span class="value" id="requestDate">-</span>
-                </div>
+                <div class="row"><span class="label">Sorğu ID:</span><span class="value" id="requestId">#AV-0000</span></div>
+                <div class="row"><span class="label">Məbləğ:</span><span class="value" id="requestAmount">0 ₼</span></div>
+                <div class="row"><span class="label">Status:</span><span class="value" style="color: #ffaa00;">⏳ YOXLANILIR</span></div>
+                <div class="row"><span class="label">Tarix:</span><span class="value" id="requestDate">-</span></div>
             </div>
-            <div class="alert alert-info">
-                ℹ️ Təsdiqdən sonra balansınız avtomatik artırılacaq və oyun aktivləşəcək.
-            </div>
+            <div class="alert alert-info">ℹ️ Təsdiqdən sonra balansınız avtomatik artırılacaq və oyun aktivləşəcək.</div>
             <button class="btn btn-primary" onclick="simulateApproval()">🔄 STATUSU YENİLƏ</button>
         </div>
     </div>
@@ -423,12 +187,10 @@ body {
             <div class="label">BALANS</div>
             <div class="amount" id="balanceAmount">0.00 ₼</div>
         </div>
-
         <div class="game-preview">
             <div class="plane-fly">✈️</div>
             <div class="multiplier" id="previewMultiplier">1.00x</div>
         </div>
-
         <div id="gameAlert"></div>
         <button class="btn btn-primary" onclick="startGame()">🎮 OYUNA BAŞLA</button>
         <button class="btn" style="background: #2a3a5e; color: #fff; margin-top: 10px;" onclick="logout()">ÇIXIŞ</button>
@@ -441,21 +203,45 @@ body {
 </div>
 
 <script>
+// ========== STORAGE HELPER (xəta qoruyucusu) ==========
+function getUsers() {
+    try {
+        return JSON.parse(localStorage.getItem('aviator_users') || '{}');
+    } catch (e) {
+        return {};
+    }
+}
+
+function saveUsers(users) {
+    try {
+        localStorage.setItem('aviator_users', JSON.stringify(users));
+    } catch (e) {
+        console.error('Storage xətası:', e);
+    }
+}
+
 // ========== STATE ==========
 let currentUser = null;
-let pendingDeposit = null;
-let uploadedReceipt = null;
 
 // ========== TAB SWITCH ==========
 function switchTab(tab) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
+    const tabLogin = document.getElementById('tabLogin');
+    const tabRegister = document.getElementById('tabRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
     if (tab === 'login') {
-        document.getElementById('loginForm').classList.remove('hidden');
-        document.getElementById('registerForm').classList.add('hidden');
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        document.getElementById('regAlert').innerHTML = '';
     } else {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('registerForm').classList.remove('hidden');
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        document.getElementById('loginAlert').innerHTML = '';
     }
 }
 
@@ -466,24 +252,48 @@ function doRegister() {
     const password = document.getElementById('regPassword').value;
     const alertBox = document.getElementById('regAlert');
 
-    if (username.length < 3) { alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı min 3 simvol olmalıdır</div>'; return; }
-    if (!email.includes('@')) { alertBox.innerHTML = '<div class="alert alert-error">Düzgün email daxil edin</div>'; return; }
-    if (password.length < 6) { alertBox.innerHTML = '<div class="alert alert-error">Şifrə min 6 simvol olmalıdır</div>'; return; }
+    alertBox.innerHTML = '';
 
-    // Fake qeydiyyat - localStorage
-    const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
+    if (username.length < 3) {
+        alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı min 3 simvol olmalıdır</div>';
+        return;
+    }
+    if (!email.includes('@') || email.length < 5) {
+        alertBox.innerHTML = '<div class="alert alert-error">Düzgün email daxil edin</div>';
+        return;
+    }
+    if (password.length < 6) {
+        alertBox.innerHTML = '<div class="alert alert-error">Şifrə min 6 simvol olmalıdır</div>';
+        return;
+    }
+
+    const users = getUsers();
     if (users[username]) {
         alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi adı artıq mövcuddur</div>';
         return;
     }
-    users[username] = { email, password, balance: 5, totalDeposit: 0, hasDeposited: false, depositPending: false };
-    localStorage.setItem('aviator_users', JSON.stringify(users));
 
-    alertBox.innerHTML = '<div class="alert alert-info" style="background: rgba(0,255,136,0.15); color: #00ff88; border-color: #00ff88;">✅ Qeydiyyat uğurlu! 5 ₼ bonus verildi. İndi giriş edin.</div>';
-    setTimeout(() => {
+    users[username] = {
+        email: email,
+        password: password,
+        balance: 5,
+        totalDeposit: 0,
+        hasDeposited: false,
+        depositPending: false
+    };
+    saveUsers(users);
+
+    alertBox.innerHTML = '<div class="alert alert-success">✅ Qeydiyyat uğurlu! 5 ₼ bonus verildi. İndi giriş edin.</div>';
+
+    document.getElementById('regUsername').value = '';
+    document.getElementById('regEmail').value = '';
+    document.getElementById('regPassword').value = '';
+
+    setTimeout(function() {
         document.getElementById('loginUsername').value = username;
         switchTab('login');
-    }, 1500);
+        document.getElementById('loginAlert').innerHTML = '<div class="alert alert-success">✅ Qeydiyyat uğurlu! İndi şifrənizi daxil edin.</div>';
+    }, 1200);
 }
 
 // ========== LOGIN ==========
@@ -492,42 +302,83 @@ function doLogin() {
     const password = document.getElementById('loginPassword').value;
     const alertBox = document.getElementById('loginAlert');
 
-    const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
-    if (!users[username] || users[username].password !== password) {
-        alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı və ya şifrə yanlışdır</div>';
+    alertBox.innerHTML = '';
+
+    if (!username) {
+        alertBox.innerHTML = '<div class="alert alert-error">İstifadəçi adı daxil edin</div>';
+        return;
+    }
+    if (!password) {
+        alertBox.innerHTML = '<div class="alert alert-error">Şifrə daxil edin</div>';
+        return;
+    }
+
+    const users = getUsers();
+
+    if (!users[username]) {
+        alertBox.innerHTML = '<div class="alert alert-error">Bu istifadəçi mövcud deyil. Qeydiyyatdan keçin.</div>';
+        return;
+    }
+
+    if (users[username].password !== password) {
+        alertBox.innerHTML = '<div class="alert alert-error">Şifrə yanlışdır</div>';
         return;
     }
 
     currentUser = username;
-    localStorage.setItem('aviator_current', username);
-    alertBox.innerHTML = '';
+    try {
+        localStorage.setItem('aviator_current', username);
+    } catch (e) {}
 
-    // Depozit yoxla
-    if (!users[username].hasDeposited) {
-        showScreen('depositScreen');
-    } else {
+    const userData = users[username];
+
+    if (userData.hasDeposited) {
         showScreen('gameScreen');
-        document.getElementById('balanceAmount').textContent = users[username].balance.toFixed(2) + ' ₼';
+        document.getElementById('balanceAmount').textContent = userData.balance.toFixed(2) + ' ₼';
+    } else if (userData.depositPending) {
+        showScreen('depositScreen');
+        document.getElementById('depositStep1').classList.add('hidden');
+        document.getElementById('depositStep2').classList.add('hidden');
+        document.getElementById('depositStep3').classList.remove('hidden');
+        document.getElementById('step1').classList.add('done');
+        document.getElementById('step2').classList.add('done');
+        document.getElementById('step3').classList.add('active');
+        document.getElementById('requestId').textContent = '#' + (userData.pendingRequestId || 'AV-0000');
+        document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
+        document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
+    } else {
+        showScreen('depositScreen');
+        document.getElementById('depositStep1').classList.remove('hidden');
+        document.getElementById('depositStep2').classList.add('hidden');
+        document.getElementById('depositStep3').classList.add('hidden');
+        document.getElementById('step1').classList.add('active');
+        document.getElementById('step2').classList.remove('active', 'done');
+        document.getElementById('step3').classList.remove('active', 'done');
     }
 }
 
 // ========== SCREEN MANAGEMENT ==========
 function showScreen(screenId) {
-    ['loginScreen', 'depositScreen', 'gameScreen'].forEach(id => {
-        document.getElementById(id).classList.add('hidden');
-    });
+    const screens = ['loginScreen', 'depositScreen', 'gameScreen'];
+    for (let i = 0; i < screens.length; i++) {
+        document.getElementById(screens[i]).classList.add('hidden');
+    }
     document.getElementById(screenId).classList.remove('hidden');
 }
 
 // ========== DEPOSIT FLOW ==========
 function goToUpload() {
-    const amount = parseFloat(document.getElementById('depositAmount').value);
+    const amountInput = document.getElementById('depositAmount').value;
+    const amount = parseFloat(amountInput);
     const alertBox = document.getElementById('depositAlert1');
-    if (!amount || amount < 5) {
+
+    alertBox.innerHTML = '';
+
+    if (isNaN(amount) || amount < 5) {
         alertBox.innerHTML = '<div class="alert alert-error">Minimum depozit 5 ₼</div>';
         return;
     }
-    alertBox.innerHTML = '';
+
     document.getElementById('depositStep1').classList.add('hidden');
     document.getElementById('depositStep2').classList.remove('hidden');
     document.getElementById('step1').classList.add('done');
@@ -537,15 +388,20 @@ function goToUpload() {
 function handleReceiptUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
-    uploadedReceipt = file.name;
     document.getElementById('uploadedFileName').textContent = '📎 ' + file.name;
     document.getElementById('submitDepositBtn').disabled = false;
 }
 
 function submitDeposit() {
     const amount = parseFloat(document.getElementById('depositAmount').value);
-    const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
-    
+    const users = getUsers();
+
+    if (!users[currentUser]) {
+        alert('İstifadəçi tapılmadı. Yenidən giriş edin.');
+        showScreen('loginScreen');
+        return;
+    }
+
     const requestId = 'AV-' + Math.floor(1000 + Math.random() * 9000);
     const now = new Date();
     const dateStr = now.toLocaleString('az-AZ');
@@ -554,7 +410,7 @@ function submitDeposit() {
     users[currentUser].pendingAmount = amount;
     users[currentUser].pendingRequestId = requestId;
     users[currentUser].pendingDate = now.toISOString();
-    localStorage.setItem('aviator_users', JSON.stringify(users));
+    saveUsers(users);
 
     document.getElementById('requestId').textContent = '#' + requestId;
     document.getElementById('requestAmount').textContent = amount.toFixed(2) + ' ₼';
@@ -566,24 +422,26 @@ function submitDeposit() {
     document.getElementById('step3').classList.add('active');
 }
 
-// ========== SİMULYASİYA: 30 DƏQİQƏ SONRA TƏSDİQ ==========
 function simulateApproval() {
-    const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
+    const users = getUsers();
     const user = users[currentUser];
-    
+
+    if (!user) {
+        showScreen('loginScreen');
+        return;
+    }
+
     if (!user.depositPending) {
-        // Artıq təsdiqlənib
         showScreen('gameScreen');
         document.getElementById('balanceAmount').textContent = user.balance.toFixed(2) + ' ₼';
         return;
     }
 
-    // Demo: dərhal təsdiq (realda 30 dəq gözləmə olacaq)
-    user.balance += user.pendingAmount;
-    user.totalDeposit += user.pendingAmount;
+    user.balance = (user.balance || 0) + user.pendingAmount;
+    user.totalDeposit = (user.totalDeposit || 0) + user.pendingAmount;
     user.hasDeposited = true;
     user.depositPending = false;
-    localStorage.setItem('aviator_users', JSON.stringify(users));
+    saveUsers(users);
 
     document.getElementById('step3').classList.add('done');
     alert('✅ Depozitiniz təsdiqləndi! Oyun aktivləşdirildi.');
@@ -593,9 +451,11 @@ function simulateApproval() {
 
 // ========== GAME ==========
 function startGame() {
-    const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
+    const users = getUsers();
     const user = users[currentUser];
-    
+
+    if (!user) { showScreen('loginScreen'); return; }
+
     if (!user.hasDeposited) {
         document.getElementById('gameAlert').innerHTML = '<div class="alert alert-error">Oyunu oynamaq üçün depozit etməlisiniz!</div>';
         return;
@@ -604,43 +464,61 @@ function startGame() {
         document.getElementById('gameAlert').innerHTML = '<div class="alert alert-error">Minimum oyun mərcəsi 5 ₼</div>';
         return;
     }
-    
+
     document.getElementById('gameAlert').innerHTML = '<div class="alert alert-info">🎮 Oyun başladı! (Demo rejim)</div>';
-    // Real oyun məntiqi burada
 }
 
 // ========== LOGOUT ==========
 function logout() {
-    localStorage.removeItem('aviator_current');
+    try { localStorage.removeItem('aviator_current'); } catch (e) {}
     currentUser = null;
     document.getElementById('loginUsername').value = '';
     document.getElementById('loginPassword').value = '';
+    document.getElementById('loginAlert').innerHTML = '';
     showScreen('loginScreen');
+    switchTab('login');
 }
 
 // ========== AUTO-LOGIN ==========
-window.addEventListener('load', () => {
-    const saved = localStorage.getItem('aviator_current');
+window.addEventListener('load', function() {
+    let saved = null;
+    try { saved = localStorage.getItem('aviator_current'); } catch (e) {}
+
     if (saved) {
-        const users = JSON.parse(localStorage.getItem('aviator_users') || '{}');
+        const users = getUsers();
         if (users[saved]) {
             currentUser = saved;
-            if (users[saved].hasDeposited) {
+            const userData = users[saved];
+
+            if (userData.hasDeposited) {
                 showScreen('gameScreen');
-                document.getElementById('balanceAmount').textContent = users[saved].balance.toFixed(2) + ' ₼';
-            } else if (users[saved].depositPending) {
+                document.getElementById('balanceAmount').textContent = userData.balance.toFixed(2) + ' ₼';
+            } else if (userData.depositPending) {
                 showScreen('depositScreen');
                 document.getElementById('depositStep1').classList.add('hidden');
                 document.getElementById('depositStep2').classList.add('hidden');
                 document.getElementById('depositStep3').classList.remove('hidden');
-                document.getElementById('requestId').textContent = '#' + users[saved].pendingRequestId;
-                document.getElementById('requestAmount').textContent = users[saved].pendingAmount.toFixed(2) + ' ₼';
-                document.getElementById('requestDate').textContent = new Date(users[saved].pendingDate).toLocaleString('az-AZ');
+                document.getElementById('step1').classList.add('done');
+                document.getElementById('step2').classList.add('done');
+                document.getElementById('step3').classList.add('active');
+                document.getElementById('requestId').textContent = '#' + (userData.pendingRequestId || 'AV-0000');
+                document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
+                document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
             } else {
                 showScreen('depositScreen');
             }
+        } else {
+            try { localStorage.removeItem('aviator_current'); } catch (e) {}
         }
     }
+});
+
+// Enter düyməsi ilə giriş
+document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') doLogin();
+});
+document.getElementById('regPassword').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') doRegister();
 });
 </script>
 </body>
